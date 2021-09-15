@@ -40,3 +40,12 @@ To achieve this, you’ll create an object with keys and values that conform to 
 
 
 The purpose of renderSortByOptions() is to dynamically create the list items needed to display the sort options (Best Match, Highest Rated, Most Reviewed). This is to help future proof against potential changes to the Yelp API.
+
+Since fetch() is a browser API, older browsers may not support it. To increase the accessibilty of Ravenous to a wider audience of users, we’ll need to add a fetch() polyfill to support older browsers.
+
+Within the Ravenous directory in your terminal, run npm install whatwg-fetch --save to install the whatwg-fetch polyfill and add it to your package.json file.
+
+
+Your fetch() will currently not function correctly due to CORS restrictions.
+We can bypass this restriction with an API called CORS Anywhere. CORS Anywhere will take requests sent to its API endpoint, make them for the requesting app with the proper CORS permissions, and then return the response back to the requesting app.
+https://cors-anywhere.herokuapp.com/corsdemo

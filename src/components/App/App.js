@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
+import Yelp from '../../util/Yelp';
 
+//NESAHAT!!!! FUNGUJE
 export default function App() {
+  const [businesses, setBusinesses] = useState([]);
+
+  const searchYelp = (term, location, sortBy) => {
+    Yelp.search(term, location, sortBy)
+    .then(businesses => setBusinesses(businesses))
+  }
+
   return (
     <div className="App">
       <h1>ravenous</h1>
-      <SearchBar />
-      <BusinessList />
+      <SearchBar searchYelp = {searchYelp}/>
+      <BusinessList businesses = {businesses}/>
     </div>
   );
 }
