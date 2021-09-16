@@ -10,7 +10,6 @@ export default function SearchBar({searchYelp}) {
         'Most Reviewed': 'review_count'
     };
 
-    // const [state, setState] = useState({});
     //the search term located in the search input
     const [term, setTerm] = useState('');    
     //the search term located in the search input
@@ -27,12 +26,9 @@ export default function SearchBar({searchYelp}) {
         }
     }
  
-
-    //sets the state of a sorting option - part 3 - bod 7
-    const handleSortByChange = () => {
-        // setSortBy({sortBy : sortByOption})
-        setSortBy((sortByOption) => ( {sortBy : sortByOption} )) 
-        // setSortBy({sortByOption})
+    //sets the state of a sorting option
+    const handleSortByChange = (sortByOption) => {
+        setSortBy(sortByOption)
     }
   
 
@@ -54,12 +50,14 @@ export default function SearchBar({searchYelp}) {
 
     //create li items for ul
     const renderSortByOptions = 
-        Object.keys(sortByOptions)
-        .map((sortByOption) => {
+        Object.keys(sortByOptions).map((sortByOption) => {
             let sortByOptionValue = sortByOptions[sortByOption];
-            // <li className={getSortByClass(sortByOptionValue)} onClick={handleSortByChange(sortByOptionValue)}>{sortByOption}</li>
-            // return (<li key={i} className={sortByOptions[sortByOption] ? 'active' : ''} onClick={handleSortByChange}>{sortByOption}</li>)
-            return (<li key={sortByOptionValue} className={getSortByClass(sortByOptionValue)} onClick={handleSortByChange}>{sortByOption}</li>)
+            return (<li key={sortByOptionValue} 
+                        className={getSortByClass(sortByOptionValue)} 
+                        //Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
+                        onClick={() => handleSortByChange(sortByOptionValue)}>
+                    {sortByOption}
+                    </li>)            
             }
         )
   

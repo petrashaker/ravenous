@@ -4,7 +4,6 @@ import BusinessList from '../BusinessList/BusinessList';
 import SearchBar from '../SearchBar/SearchBar';
 import Yelp from '../../util/Yelp';
 
-//NESAHAT!!!! FUNGUJE
 export default function App() {
   const [businesses, setBusinesses] = useState([]);
 
